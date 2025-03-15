@@ -9,5 +9,7 @@ package expo;
  * @author soporte.tecnico
  */
 public class Main {
-    
+    public static void main(String[] args) {
+        new Login();
+    }
 }
