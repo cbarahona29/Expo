@@ -14,7 +14,7 @@ import javax.swing.*;
  */
 public class Menu extends JFrame implements ActionListener {
     
-    private JButton registrarBtn, buscarBtn, verTodosBtn, eliminarBtn, cerrarSesionBtn;
+    private JButton registrarBtn, buscarBtn, verTodosBtn, cerrarSesionBtn;
     private JLabel titleLbl;
     
     public Menu() {
@@ -23,9 +23,9 @@ public class Menu extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
-        this.getContentPane().setBackground(new Color(0, 0, 0));
+        this.getContentPane().setBackground(new Color(16, 112, 136));
         
-        titleLbl = new JLabel("Menú Principal");
+        titleLbl = new JLabel("Menu Principal", SwingConstants.CENTER);
         titleLbl.setBounds(150, 20, 200, 40);
         titleLbl.setForeground(Color.WHITE);
         titleLbl.setFont(new Font("Arial", Font.BOLD, 24));
@@ -45,14 +45,9 @@ public class Menu extends JFrame implements ActionListener {
         verTodosBtn.setBounds(150, 180, 200, 40);
         verTodosBtn.addActionListener(this);
         this.add(verTodosBtn);
-        
-        eliminarBtn = new JButton("Eliminar Cliente");
-        eliminarBtn.setBounds(150, 230, 200, 40);
-        eliminarBtn.addActionListener(this);
-        this.add(eliminarBtn);
-        
-        cerrarSesionBtn = new JButton("Cerrar Sesión");
-        cerrarSesionBtn.setBounds(150, 280, 200, 40);
+
+        cerrarSesionBtn = new JButton("Cerrar Sesion");
+        cerrarSesionBtn.setBounds(150, 230, 200, 40);
         cerrarSesionBtn.addActionListener(this);
         this.add(cerrarSesionBtn);
         
@@ -62,16 +57,17 @@ public class Menu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == registrarBtn) {
-            new RegistroUser();
+            new RegistroCliente();
             this.dispose();
         } else if (e.getSource() == buscarBtn) {
-            JOptionPane.showMessageDialog(this, "Función de Buscar Cliente", "Información", JOptionPane.INFORMATION_MESSAGE);
+            new BuscarCliente();
+            this.dispose();
         } else if (e.getSource() == verTodosBtn) {
-            JOptionPane.showMessageDialog(this, "Función de Ver Todos los Clientes", "Información", JOptionPane.INFORMATION_MESSAGE);
-        } else if (e.getSource() == eliminarBtn) {
-            JOptionPane.showMessageDialog(this, "Función de Eliminar Cliente", "Información", JOptionPane.INFORMATION_MESSAGE);
+            new verClientes();     
+            this.dispose();
+           this.dispose();
         } else if (e.getSource() == cerrarSesionBtn) {
-            int option = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas cerrar sesión?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            int option = JOptionPane.showConfirmDialog(this, "¿Estas seguro de que deseas cerrar sesion?", "Confirmar", JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
                 this.dispose();
                 new Login();

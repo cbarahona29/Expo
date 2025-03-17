@@ -1,30 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package expo;
 
 import Serializable.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
 /**
  *
  * @author soporte.tecnico
  */
-public class RegistroUser extends JFrame implements ActionListener{
+public class RegistroCliente extends JFrame implements ActionListener {
     private JTextField usertxf, userIdtxf, cellPhoneNumbertxf, lastNametxf, pricetxf;
     private JLabel userlbl, useridlbl, celllbl, lastnamelbl, pricelbl, titlelbl;
     private JButton registarbtn, regresarbtn;
     
-    public RegistroUser(){
+    public RegistroCliente() {
         
         this.setTitle("Registro de Clientes");
         this.setSize(500, 460);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
-        this.getContentPane().setBackground(new Color(0, 0, 0));
+        this.getContentPane().setBackground(new Color(16, 112, 136));
         
         titlelbl = new JLabel("Registro de Nuevo Cliente");
         titlelbl.setBounds(140, 20, 250, 30);
@@ -59,7 +56,9 @@ public class RegistroUser extends JFrame implements ActionListener{
         
         userIdtxf = new JTextField();
         userIdtxf.setBounds(150, 150, 280, 25);
-        userIdtxf.addActionListener(this);
+        userIdtxf.setEditable(false);
+        userIdtxf.setText(String.valueOf(Clientes.getNextId()));
+        userIdtxf.setBackground(new Color(230, 230, 230));
         this.add(userIdtxf);
         
         celllbl = new JLabel("Teléfono:");
@@ -100,31 +99,30 @@ public class RegistroUser extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == registarbtn) {
             if (usertxf.getText().isEmpty() || lastNametxf.getText().isEmpty() || 
-                userIdtxf.getText().isEmpty() || cellPhoneNumbertxf.getText().isEmpty() || 
-                pricetxf.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios","Error", JOptionPane.ERROR_MESSAGE);
+                cellPhoneNumbertxf.getText().isEmpty() || pricetxf.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             
             try {
                 String nombre = usertxf.getText();
                 String apellido = lastNametxf.getText();
-                int userId = Integer.parseInt(userIdtxf.getText());
                 int telefono = Integer.parseInt(cellPhoneNumbertxf.getText());
                 double precio = Double.parseDouble(pricetxf.getText()); 
                 
-                Clientes usuario = new Clientes(nombre, apellido, telefono, userId, precio);
-                Logica log=new Logica();
+                Clientes usuario = new Clientes(nombre, apellido, telefono, precio);
+                Logica log = new Logica();
                 log.saveUserToFile(usuario);
+                
                 usertxf.setText("");
                 lastNametxf.setText("");
-                userIdtxf.setText("");
                 cellPhoneNumbertxf.setText("");
                 pricetxf.setText("");
+                userIdtxf.setText(String.valueOf(Clientes.getNextId()));
                
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, 
-                    "Por favor ingrese valores numéricos válidos para ID, Teléfono y Precio", 
+                    "Por favor ingrese valores numéricos válidos para Teléfono y Precio", 
                     "Error de formato", JOptionPane.ERROR_MESSAGE);
             }
         } else if (e.getSource() == regresarbtn) {
@@ -132,5 +130,4 @@ public class RegistroUser extends JFrame implements ActionListener{
             new Menu();
         }
     }
-    
 }

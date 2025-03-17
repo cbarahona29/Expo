@@ -23,15 +23,14 @@ public class Login extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
-        this.getContentPane().setBackground(new Color(0, 0, 0));
+        this.getContentPane().setBackground(new Color(16, 112, 136));
         
-        titlelbl = new JLabel("Sistema de Administracion "
-                + "\nde"
-                + "\n Clientes");
-        titlelbl.setBounds(125, 20, 170, 30);
-        titlelbl.setForeground(Color.WHITE);
-        titlelbl.setFont(new Font("Arial", Font.BOLD, 18));
-        this.add(titlelbl);
+       titlelbl = new JLabel("Sistema de Administración de Clientes", SwingConstants.CENTER);
+       titlelbl.setBounds(50, 20, 300, 30);
+       titlelbl.setFont(new Font("Arial", Font.BOLD, 16));
+       titlelbl.setForeground(Color.WHITE);
+       this.add(titlelbl);
+
         
         userlbl = new JLabel("Usuario:");
         userlbl.setBounds(50, 70, 80, 25);
@@ -43,7 +42,6 @@ public class Login extends JFrame implements ActionListener{
         user.addActionListener(this);
         this.add(user);
         
-        // Password Label
         contralbl = new JLabel("Contraseña:");
         contralbl.setBounds(50, 110, 80, 25);
         contralbl.setForeground(Color.WHITE);
