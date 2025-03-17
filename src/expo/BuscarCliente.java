@@ -122,7 +122,8 @@ public class BuscarCliente extends JFrame implements ActionListener {
             try {
                 new Menu();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, 
+              
+         JOptionPane.showMessageDialog(this, 
                     "Error al abrir el menu principal: " + ex.getMessage(), 
                     "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);

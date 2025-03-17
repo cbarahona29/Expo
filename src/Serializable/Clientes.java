@@ -18,7 +18,7 @@ public class Clientes implements Serializable {
      double price;
      boolean isActive;
     
-    private static final String COUNTER_FILE = "id_counter.dat";
+    private static final String COUNTER_FILE = "id.dat";
     
     public static int getNextId() {
         int nextId = 1;
